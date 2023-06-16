@@ -1,0 +1,100 @@
+body {
+    background-image: url('num.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 36px;
+  }
+  
+  form {
+    margin: 20px auto;
+    max-width: 500px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 18px;
+  }
+  
+  form input[type="text"],
+  form input[type="datetime-local"],
+  form select,
+  form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  form button[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  #appointment-list {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+  }
+  
+  #appointment-list h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+  }
+  
+  #appointment-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #appointment-list th,
+  #appointment-list td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  #appointment-list th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  #appointment-list td button {
+    background-color: #f44336;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+  }
+  
+  #appointment-list img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-top: 5px;
+    display: block;
+  }
+  

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gestion des Rendez-vous</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>Gestion des Rendez-vous</h1>
+
+  <form id="appointment-form">
+    <div>
+      <label for="appointment-id">ID Rendez-vous:</label>
+      <input type="text" id="appointment-id" required>
+    </div>
+    <div>
+      <label for="user-id">ID Utilisateur:</label>
+      <input type="text" id="user-id" required>
+    </div>
+    <div>
+      <label for="start-time">Date et heure de début:</label>
+      <input type="datetime-local" id="start-time" required>
+    </div>
+    <div>
+      <label for="end-time">Date et heure de fin:</label>
+      <input type="datetime-local" id="end-time" required>
+    </div>
+    <div>
+      <label for="status">Statut:</label>
+      <select id="status" required>
+        <option value="confirmé">Confirmé</option>
+        <option value="en attente">En attente</option>
+        <option value="annulé">Annulé</option>
+      </select>
+    </div>
+    <div>
+      <label for="notes">Notes:</label>
+      <textarea id="notes"></textarea>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email">
+    </div>
+    <div>
+      <label for="photo">Photo:</label>
+      <input type="file" id="photo">
+      <img id="photo-preview" src="#" alt="Photo Preview">
+    </div>
+    <div>
+      <button type="submit">Enregistrer</button>
+    </div>
+  </form>
+
+  <div id="appointment-list">
+    <h2>Liste des Rendez-vous</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID Rendez-vous</th>
+          <th>ID Utilisateur</th>
+          <th>Date et heure de début</th>
+          <th>Date et heure de fin</th>
+          <th>Statut</th>
+          <th>Notes</th>
+          <th>Email</th>
+          <th>Photo</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="appointment-table-body">
+      </tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

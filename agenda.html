@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Intégration de Google Calendar</title>
+  <style>
+    #google-calendar-container {
+      width: 800px;
+      height: 600px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calendrier</h1>
+  <div id="google-calendar-container"></div>
+
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script>
+    function handleClientLoad() {
+      gapi.load('client:auth2', initClient);
+    }
+
+    function initClient() {
+      gapi.client.init({
+        apiKey: 'VOTRE_CLE_API',
+        clientId: 'VOTRE_CLIENT_ID',
+        discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
+        scope: 'https://www.googleapis.com/auth/calendar.readonly'
+      }).then(function() {
+        showGoogleCalendarWidget();
+      }).catch(function(error) {
+        console.log('Erreur lors de l'initialisation de l'API Google Calendar:', error);
+      });
+    }
+
+    function showGoogleCalendarWidget() {
+      var calendarContainer = document.getElementById('google-calendar-container');
+      var calendar = new gapi.calendar.Calendar(calendarContainer);
+      calendar.render();
+    }
+  </script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://apis.google.com/js/api.js?onload=handleClientLoad" async defer></script>
+</body>
+</html>

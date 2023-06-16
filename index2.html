@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
+
+</head>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
+
+
+<body>
+    <button id="addEventButton">Ajouter un événement à Google Calendar</button>
+    <input type="email" id="emailInput" placeholder="Entrez votre adresse e-mail">
+<button id="createAccountButton">Créer un compte Google</button>
+
+<button id="createEventButton">Ajouter un rendez-vous</button>
+<div id="calendar"></div>
+
+
+
+
+<script>
+    $(document).ready(function() {
+      $('#calendar').fullCalendar({
+        // Options de configuration de FullCalendar
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+        },
+        defaultView: 'month',
+        editable: true,
+        // ... autres options
+
+        // Gestionnaires d'événements
+        // ...
+      });
+    });
+  </script>
+
+    <script>
+
+        // Fonction pour ouvrir l'interface Google Calendar avec les détails de l'événement pré-remplis
+function addToGoogleCalendar() {
+  // Vos détails d'événement (titre, date, heure, etc.)
+  const eventDetails = {
+    summary: 'Titre de l\'événement',
+    location: 'Emplacement de l\'événement',
+    description: 'Description de l\'événement',
+    start: {
+      dateTime: '2023-06-16T10:00:00', // Date et heure de début de l'événement au format ISO 8601
+      timeZone: 'Europe/Paris' // Fuseau horaire de l'événement
+    },
+    end: {
+      dateTime: '2023-06-16T12:00:00', // Date et heure de fin de l'événement au format ISO 8601
+      timeZone: 'Europe/Paris' // Fuseau horaire de l'événement
+    },
+    // Vous pouvez ajouter d'autres propriétés comme les rappels, les invités, etc.
+  };
+
+  // Générer l'URL pour ouvrir l'interface Google Calendar avec les détails de l'événement
+  const calendarUrl = 'https://calendar.google.com/calendar/u/0/r?pli=1' +
+    '&text=' + encodeURIComponent(eventDetails.summary) +
+    '&dates=' + encodeURIComponent(eventDetails.start.dateTime) + '/' + encodeURIComponent(eventDetails.end.dateTime) +
+    '&details=' + encodeURIComponent(eventDetails.description) +
+    '&location=' + encodeURIComponent(eventDetails.location) +
+    '&ctz=' + encodeURIComponent(eventDetails.start.timeZone);
+
+  // Ouvrir l'interface Google Calendar dans une nouvelle fenêtre ou un nouvel onglet
+  window.open(calendarUrl, '_blank');
+}
+
+// Ajouter un écouteur d'événement au bouton
+const addEventButton = document.getElementById('addEventButton');
+addEventButton.addEventListener('click', addToGoogleCalendar);
+
+
+
+// Fonction pour gérer le clic sur le bouton de création de compte
+function createGoogleAccount() {
+  // Récupérer la valeur de l'adresse e-mail renseignée par l'utilisateur
+  const email = document.getElementById('emailInput').value;
+
+  // Vérifier si l'adresse e-mail est valide
+  if (isValidEmail(email)) {
+    // Rediriger l'utilisateur vers la page de création de compte Google avec l'adresse e-mail pré-remplie
+    const accountCreationUrl = 'https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp&Email=' + encodeURIComponent(email);
+    window.location.href = accountCreationUrl;
+  } else {
+    alert('Veuillez entrer une adresse e-mail valide.');
+  }
+}
+
+// Fonction pour vérifier si une adresse e-mail est valide
+function isValidEmail(email) {
+  // Vous pouvez utiliser une expression régulière ou une autre logique de validation ici
+  // Par exemple, une validation simple avec une expression régulière :
+  const emailRegex = /^\S+@\S+\.\S+$/;
+  return emailRegex.test(email);
+}
+
+// Ajouter un écouteur d'événement au bouton
+const createAccountButton = document.getElementById('createAccountButton');
+createAccountButton.addEventListener('click', createGoogleAccount);
+
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+<script>
+
+$(document).ready(function() {
+  $('#calendar').fullCalendar({
+    // Options générales
+    header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month,agendaWeek,agendaDay'
+    },
+    defaultView: 'month',
+    editable: true,
+
+    // Gestionnaire d'événements pour la création d'un rendez-vous
+    dayClick: function(date, jsEvent, view) {
+      // Ici, vous pouvez afficher un formulaire ou une boîte de dialogue pour permettre à l'utilisateur de saisir les détails du rendez-vous
+      // Une fois les détails saisis, vous pouvez utiliser l'API Google Calendar pour créer l'événement
+      // Assurez-vous d'avoir une intégration appropriée avec l'API Google Calendar pour cette étape
+      console.log('Date cliquée :', date.format());
+    },
+
+    // Gestionnaire d'événements pour la modification d'un rendez-vous
+    eventClick: function(event, jsEvent, view) {
+      // Ici, vous pouvez afficher un formulaire ou une boîte de dialogue pré-rempli avec les détails de l'événement
+      // Une fois les modifications effectuées, vous pouvez utiliser l'API Google Calendar pour mettre à jour l'événement
+      // Assurez-vous d'avoir une intégration appropriée avec l'API Google Calendar pour cette étape
+      console.log('Événement cliqué :', event.title);
+    },
+
+    // Gestionnaire d'événements pour la suppression d'un rendez-vous
+    eventDrop: function(event, delta, revertFunc) {
+      // Ici, vous pouvez utiliser l'API Google Calendar pour mettre à jour l'événement après le déplacement
+      // Assurez-vous d'avoir une intégration appropriée avec l'API Google Calendar pour cette étape
+      console.log('Événement déplacé :', event.title);
+    }
+  });
+});
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Initialisez FullCalendar ici
+
+      // Gestionnaire d'événements pour le clic sur le bouton "Ajouter un rendez-vous"
+      $('#createEventButton').click(function() {
+        // Ici, vous pouvez afficher un formulaire ou une boîte de dialogue pour permettre à l'utilisateur de saisir les détails du rendez-vous
+        // Une fois les détails saisis, vous pouvez utiliser l'API Google Calendar pour créer l'événement
+        // Assurez-vous d'avoir une intégration appropriée avec l'API Google Calendar pour cette étape
+        console.log('Bouton "Ajouter un rendez-vous" cliqué');
+      });
+    });
+  </script>
+
+
+</body>
+</html>
+

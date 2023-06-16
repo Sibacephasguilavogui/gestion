@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>Modifier ou Annuler RDV</title>
+	</head>
+	<body>
+		<div class="container">
+			<nav>
+				<a href="#" class="logo" id="logo">RDV</a>
+				<ul>
+					 <li class="nav-item"><a href="listeRDV.html" class="nav-link">liste des Rendez-Vous</a></li>
+					<li class="nav-item"><a href="index2.html" class="nav-link">Vue Calendrier</a></li>
+					<li class="nav-item"><a href="googleagendar.HTML" class="nav-link">Syncronisation</a></li> 
+					
+					<li class="nav-item">
+						<button type="button" , role="button" class="btn" id="displayForm">Modifiez ou Annuler</button>
+					</li>
+				</ul>
+			</nav>
+
+			<section>
+				<div class="sec-container">
+					<div class="formWrapper">
+						<div class="card">
+							<div class="card-header">
+								<div id="forLogin" class="form-header active">Modification</div>
+								<div id="forRegister" class="form-header">Annulation</div>
+							</div>
+							<div class="card-body" id="formContainer">
+								<form action="" id="loginForm">
+									<input type="id" class="form-control" placeholder="ID-Rendez-vous"/>
+									<input type="id" class="form-control" placeholder="ID Utilisateur" />
+									<input type="datetime" class="form-control" placeholder="Date-Début" />
+									<input type="datetime" class="form-control" placeholder="Date-Fin" />
+                                    <label for="statut">Statut:</label>
+                                    <select id="statut" name="statut" required>
+                                      <option value="confirmer">Confirmé</option>
+                                      <option value="attente">En attente</option>
+                                      <option value="annule">Annulé</option>
+                                    </select>
+									<label for="remember">
+										<input type="checkbox" class="form-check" id="remember" />
+										Se Souvenir de moi
+									</label>
+									<button onclick="alert('Modification effectuer avec Succès') " class="formButton">
+										Modifier  
+									</button>
+								</form>
+
+								<form action="" id="registerForm" class="toggleForm">
+									<input type="id" class="form-control" placeholder="ID-Rendez-vous"/>
+									<input type="id" class="form-control" placeholder="ID Utilisateur" />
+									<input type="datetime" class="form-control" placeholder="Date-Début" />
+									<input type="datetime" class="form-control" placeholder="Date-Fin" />
+                                    <label for="statut">Statut:</label>
+                                    <select id="statut" name="statut" required>
+                                      <option value="confirmer">Confirmé</option>
+                                      <option value="attente">En attente</option>
+                                      <option value="annule">Annulé</option>
+                                    </select>
+									<label for="remember">
+										<input type="checkbox" class="form-check" id="remember" />
+										Se Souvenir de moi
+									</label>
+									<button onclick="alert('Annulatio effectuer avec Succès') " class="formButton">
+										Modifier  
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<script type="text/javascript">
+			function _(e) {
+				return document.getElementById(e);
+			}
+			let displayform = _('displayForm');
+			let forlogin = _('forLogin');
+			let loginForm = _('loginForm');
+			let forRegister = _('forRegister');
+			let registerForm = _('registerForm');
+			let formContainer = _('formContainer');
+			displayform.addEventListener('click', showForm);
+
+			forlogin.addEventListener('click', (e) => {
+				e.preventDefault;
+				forRegister.classList.remove('active');
+				forlogin.classList.add('active');
+				if (loginForm.classList.contains('toggleForm')) {
+					formContainer.style.transform = 'translate(0%)';
+					formContainer.style.transition = 'transform .5s';
+					loginForm.classList.remove('toggleForm');
+					registerForm.classList.add('toggleForm');
+				}
+			});
+
+			forRegister.addEventListener('click', (e) => {
+				e.preventDefault;
+				forlogin.classList.remove('active');
+				forRegister.classList.add('active');
+				if (registerForm.classList.contains('toggleForm')) {
+					formContainer.style.transform = 'translate(-100%)';
+					formContainer.style.transition = 'transform .5s';
+					registerForm.classList.remove('toggleForm');
+					loginForm.classList.add('toggleForm');
+				}
+			});
+
+			function showForm() {
+				document.querySelector('.formWrapper .card').classList.toggle('show');
+			}
+		</script>
+	</body>
+</html>
